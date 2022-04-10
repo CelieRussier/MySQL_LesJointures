@@ -1,0 +1,18 @@
+/* les noms, prénoms, rôle et équipe de tous les joueurs, classés dans l’ordre alphabétique par équipe, puis par rôle dans l’équipe, puis par nom de famille, puis par prénom. */
+SELECT wizard.firstname, wizard.lastname, player.role, team.name as team_name
+FROM wizard
+LEFT JOIN player ON player.wizard_id = wizard.id
+LEFT JOIN team ON team.id = player.team_id
+ORDER BY team_name, player.role, lastname, firstname;
+
+/* les prénoms et noms des joueurs ayant le rôle de seeker (attrapeur), classés par ordre alphabétique de nom puis prénom */
+SELECT wizard.firstname, wizard.lastname
+FROM player
+JOIN wizard ON player.wizard_id = wizard.id 
+WHERE player.role = "seeker";
+
+/* iste de tous les sorciers qui ne pratiquent pas le quidditch. */
+SELECT wizard.firstname, wizard.lastname 
+FROM wizard
+LEFT JOIN player ON player.wizard_id = wizard.id
+WHERE player.wizard_id is null;
