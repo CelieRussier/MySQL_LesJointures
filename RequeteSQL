@@ -1,4 +1,5 @@
 /* les noms, prénoms, rôle et équipe de tous les joueurs, classés dans l’ordre alphabétique par équipe, puis par rôle dans l’équipe, puis par nom de famille, puis par prénom. */
+/* j'ai fait exprès d'y inclure également les membres de wizard, même s'ils n'étaient pas des joueurs de trucmuche */
 SELECT wizard.firstname, wizard.lastname, player.role, team.name as team_name
 FROM wizard
 LEFT JOIN player ON player.wizard_id = wizard.id
@@ -9,7 +10,8 @@ ORDER BY team_name, player.role, lastname, firstname;
 SELECT wizard.firstname, wizard.lastname
 FROM player
 JOIN wizard ON player.wizard_id = wizard.id 
-WHERE player.role = "seeker";
+WHERE player.role = "seeker"
+ORDER by lastname, firstname;
 
 /* iste de tous les sorciers qui ne pratiquent pas le quidditch. */
 SELECT wizard.firstname, wizard.lastname 
